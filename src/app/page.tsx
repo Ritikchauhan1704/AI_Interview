@@ -1,11 +1,9 @@
-"use client"
-import { useEffect } from "react";
-import { toast } from "sonner";
+"use client";
 
 export default function Home() {
-  useEffect(() => {
-    toast.message("hello wold");
-  }, []);
-
-  return <div>Home</div>;
+  return (
+    <div>
+      <div className="">Hi</div>
+    </div>
+  );
 }
