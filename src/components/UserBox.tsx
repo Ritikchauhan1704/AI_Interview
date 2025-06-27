@@ -1,8 +1,38 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from "react";
 
 export default function UserBox() {
-    useEffect(()=>{},[])
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
+
+  useEffect(() => {
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then((mediaStream) => {
+        setStream(mediaStream);
+        if (videoRef.current) {
+          videoRef.current.srcObject = mediaStream;
+        }
+      })
+      .catch((err) => {
+        console.error("Error accessing camera:", err);
+      });
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, []);
+
   return (
-    <div>UserBox</div>
-  )
+    <div>
+      <div>UserBox</div>
+      <video
+        ref={videoRef}
+        width={320}
+        height={240}
+        autoPlay
+        style={{ display: "block", margin: "10px 0" }}
+      />
+    </div>
+  );
 }
