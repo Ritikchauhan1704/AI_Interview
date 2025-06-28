@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@langchain/core": "^0.3.61",
+    "@langchain/google-genai": "^0.2.14",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "langchain": "^0.3.29",
     "lucide-react": "^0.523.0",
     "next": "15.3.4",
     "react": "^19.0.0",
